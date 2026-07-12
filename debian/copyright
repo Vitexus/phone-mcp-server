@@ -1,0 +1,16 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: phone-mcp
+Upstream-Contact: hao <hao@hao.com>
+Source: https://github.com/hao-cyber/phone-mcp
+
+Files:     *
+Copyright: 2023 hao
+License:   Apache-2.0
+
+Files:     debian/*
+Copyright: 2026 Vítězslav Dvořák <info@vitexsoftware.cz>
+License:   Apache-2.0
+
+License: Apache-2.0
+ On Debian systems, the complete text of the Apache License, Version 2.0
+ can be found in "/usr/share/common-licenses/Apache-2.0".
