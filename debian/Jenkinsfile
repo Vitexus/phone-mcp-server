@@ -3,14 +3,22 @@
 // Current version of this Pipeline https://github.com/VitexSoftware/BuildImages/blob/main/Test/Jenkinsfile
 
 String[] distributions = [
-			'debian:bookworm',
+			// 'debian:bookworm', // Disabled: build #1 failed, python3-mcp/python3-pypinyin
+			//                    // not installable (deps only built for trixie in Aptly repo).
+			//                    // Re-enable once those deps are built for bookworm.
 			'debian:trixie',
 			// 'debian:forky', // Disabled: Forky is still unstable/research-only.
 			//                 // The full Debian package ecosystem is not yet available for Forky.
 			//                 // Re-enable once the stack builds cleanly for Forky.
-			'ubuntu:jammy',
-			'ubuntu:noble',
-			'ubuntu:resolute',
+			// 'ubuntu:jammy', // Disabled: build #1 failed, python3-mcp/python3-pypinyin
+			//                 // not installable (deps only built for trixie in Aptly repo).
+			//                 // Re-enable once those deps are built for jammy.
+			// 'ubuntu:noble', // Disabled: build #1 failed, python3-mcp/python3-pypinyin
+			//                 // not installable (deps only built for trixie in Aptly repo).
+			//                 // Re-enable once those deps are built for noble.
+			// 'ubuntu:resolute', // Disabled: build #1 failed, python3-mcp/python3-pypinyin
+			//                    // not installable (deps only built for trixie in Aptly repo).
+			//                    // Re-enable once those deps are built for resolute.
 ]
 
 String vendor = 'vitexsoftware'
