@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="console-application">
+  <id>io.github.hao_cyber.phone_mcp</id>
+  <metadata_license>MIT</metadata_license>
+  <project_license>Apache-2.0</project_license>
+  <name>Phone MCP</name>
+  <summary>MCP plugin for controlling Android phones via ADB</summary>
+  <description>
+    <p>
+      Phone MCP is a Model Context Protocol plugin that lets an AI assistant
+      control an Android phone through the Android Debug Bridge (ADB).
+    </p>
+    <p>
+      It exposes tools for calls, messaging, contacts, media, app management,
+      UI interaction, and screen analysis, allowing an MCP-aware assistant to
+      automate and inspect a connected Android device.
+    </p>
+  </description>
+  <provides>
+    <binary>phone-mcp</binary>
+    <binary>phone-cli</binary>
+  </provides>
+  <icon type="stock">io.github.hao_cyber.phone_mcp</icon>
+  <url type="homepage">https://github.com/hao-cyber/phone-mcp</url>
+  <developer id="io.github.hao_cyber">
+    <name>hao</name>
+  </developer>
+  <releases>
+    <release version="0.3.6" date="2026-07-12"/>
+  </releases>
+</component>
