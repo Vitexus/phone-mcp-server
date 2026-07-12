@@ -1,0 +1,125 @@
+.TH PHONE-CLI 1 "2026-07-12" "python3-phone-mcp" "User Commands"
+.SH NAME
+phone-cli \- command-line interface to control an Android phone via ADB
+.SH SYNOPSIS
+.B phone-cli
+.RI [ \-v | \-\-verbose ]
+.RI [ \-d | \-\-debug ]
+.I command
+.RI [ args ...]
+.SH DESCRIPTION
+.B phone-cli
+is a direct command-line interface to the same phone-control
+functionality provided by the
+.BR phone-mcp (1)
+MCP server. It talks to a connected Android device through the
+Android Debug Bridge (ADB) and lets you place calls, send messages,
+manage contacts and apps, capture or record the screen, interact with
+the UI, and more, without going through an MCP client.
+.PP
+Run
+.B "phone-cli --help"
+or
+.B "phone-cli \fICOMMAND\fP --help"
+for the full, up-to-date list of options for each command.
+.SH OPTIONS
+.TP
+.BR \-v ", " \-\-verbose
+Enable verbose output.
+.TP
+.BR \-d ", " \-\-debug
+Enable detailed debug output (implies \fB\-\-verbose\fP).
+.SH COMMANDS
+.TP
+.B call \fINUMBER\fP
+Make a phone call.
+.TP
+.B hangup
+End the current call.
+.TP
+.B check
+Check device connection.
+.TP
+.B send-sms \fINUMBER\fP \fIMESSAGE\fP [\-\-enhanced] [\-\-auto-enhance]
+Send a text message.
+.TP
+.B messages \fR[\-\-limit\fI N\fR]
+Check recent text messages.
+.TP
+.B sent-messages \fR[\-\-limit\fI N\fR]
+Get recently sent text messages.
+.TP
+.B contacts \fR[\-\-limit\fI N\fR] [\-\-json] [\-\-compact] [\-\-oneline]
+Retrieve contacts from the phone.
+.TP
+.B add-contact \fINAME PHONE\fP [\-\-email \fIEMAIL\fP]
+Create a new contact on the phone.
+.TP
+.B window
+Get current window information.
+.TP
+.B shortcuts \fR[\-\-package\fI PACKAGE\fR]
+Get app shortcuts.
+.TP
+.B launch \fR[\-\-action\fI ACTION\fR] [\-\-extras \fIEXTRAS\fP]
+Launch a specific activity.
+.TP
+.B screenshot
+Take a screenshot of the current screen.
+.TP
+.B record \fR[\-\-duration\fI SECONDS\fR]
+Record the screen for a specified duration (max 180 seconds).
+.TP
+.B media
+Play or pause media.
+.TP
+.B app
+Open an app.
+.TP
+.B close-app
+Force stop an app.
+.TP
+.B list-apps \fR[\-\-system] [\-\-third-party] [\-\-limit\fI N\fR] [\-\-json] [\-\-page \fIN\fP] [\-\-page-size \fIN\fP] [\-\-basic] [\-\-detailed] [\-\-compact] [\-\-oneline]
+List installed applications.
+.TP
+.B alarm \fR[\-\-label\fI LABEL\fR]
+Set an alarm.
+.TP
+.B incoming
+Check for incoming calls.
+.TP
+.B get-poi \fR[\-\-keywords\fI KEYWORDS\fR] [\-\-radius \fIMETERS\fP] [\-\-debug]
+Get phone numbers from nearby businesses and POIs by location.
+.TP
+.B analyze-screen \fR[\-\-raw]
+Analyze the current screen and return structured information.
+.TP
+.B screen-interact \fIACTION PARAMS...\fP
+Execute a screen interaction (\fItap\fP, \fIswipe\fP, \fIkey\fP,
+\fItext\fP, \fIfind\fP, \fIwait\fP, \fIscroll\fP), with parameters
+given as \fIkey=value\fP pairs.
+.TP
+.B open-url \fIURL\fP
+Open a URL in the device's default browser.
+.TP
+.B monitor-ui \fR[\-\-interval\fI SECONDS\fR] [\-\-duration \fISECONDS\fP] [\-\-watch-for \fIWHAT\fP] [\-\-text \fITEXT\fP] [\-\-id \fIID\fP] [\-\-class-name \fICLASS\fP] [\-\-content-desc \fIDESC\fP] [\-\-raw]
+Monitor the UI for changes.
+.SH REQUIREMENTS
+A device must be connected and authorized via
+.BR adb (1)
+before any command can operate on it. Use
+.B "adb devices"
+to verify connectivity.
+.SH ENVIRONMENT
+.TP
+.B AMAP_MAPS_API_KEY
+Optional API key enabling the \fBget-poi\fP command (AutoNavi/Amap).
+.SH SEE ALSO
+.BR phone-mcp (1),
+.BR adb (1)
+.PP
+Full documentation:
+.br
+https://github.com/hao-cyber/phone-mcp
+.SH AUTHOR
+hao <hao@hao.com>

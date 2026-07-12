@@ -1,0 +1,42 @@
+.TH PHONE-MCP 1 "2026-07-12" "python3-phone-mcp" "User Commands"
+.SH NAME
+phone-mcp \- Model Context Protocol server for controlling Android phones via ADB
+.SH SYNOPSIS
+.B phone-mcp
+.SH DESCRIPTION
+.B phone-mcp
+starts a Model Context Protocol (MCP) server that exposes tools for
+controlling an Android phone through the Android Debug Bridge (ADB).
+It communicates with an MCP-aware AI assistant (such as Claude Desktop
+or another MCP client) over standard input/output using the stdio
+transport.
+.PP
+The server exposes tools for phone calls, SMS messaging, contacts,
+media playback and recording, app management, UI inspection and
+interaction, screen analysis, and map/POI lookups on a device
+connected via
+.BR adb (1).
+.PP
+This program takes no command-line arguments. It is intended to be
+launched by an MCP client, which is typically configured to run
+.B phone-mcp
+as a subprocess and communicate with it over stdio.
+.SH REQUIREMENTS
+A device must be connected and authorized via
+.BR adb (1)
+before any tool provided by the server can operate on it. Use
+.B "adb devices"
+to verify connectivity.
+.SH ENVIRONMENT
+.TP
+.B AMAP_MAPS_API_KEY
+Optional API key enabling the map/POI lookup tools (AutoNavi/Amap).
+.SH SEE ALSO
+.BR phone-cli (1),
+.BR adb (1)
+.PP
+Full documentation and configuration examples:
+.br
+https://github.com/hao-cyber/phone-mcp
+.SH AUTHOR
+hao <hao@hao.com>

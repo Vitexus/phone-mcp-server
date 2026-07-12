@@ -1,3 +1,4 @@
+import argparse
 import asyncio
 from mcp.server.fastmcp import FastMCP
 
@@ -57,6 +58,15 @@ if HAS_VALID_API_KEY:
 
 def main():
     """Run the MCP server."""
+    parser = argparse.ArgumentParser(
+        prog="phone-mcp",
+        description=(
+            "Model Context Protocol server for controlling Android phones "
+            "via ADB. Intended to be launched by an MCP client and spoken "
+            "to over stdio; takes no arguments during normal operation."
+        ),
+    )
+    parser.parse_args()
     mcp.run(transport="stdio")
 
 
