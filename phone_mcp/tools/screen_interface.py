@@ -16,7 +16,6 @@ from .ui_enhanced import (
     find_clickable_elements, wait_for_element, scroll_to_element
 )
 from .interactions import tap_screen, swipe_screen, press_key, input_text, get_screen_size
-from .media import take_screenshot
 from ..core import run_command
 
 logger = logging.getLogger("phone_mcp")
@@ -194,9 +193,11 @@ async def get_screen_info(include_screenshot: bool = True, max_elements: int = 1
         # Take a screenshot for reference if needed
         screenshot_base64 = ""
         if include_screenshot:
-            screenshot_result = await take_screenshot()
-            screenshot_data = json.loads(screenshot_result)
-            screenshot_base64 = screenshot_data.get("data", "") if screenshot_data.get("status") == "success" else ""
+            # take_screenshot() returns a human-readable status string, not JSON,
+            # so capture and encode the screenshot directly instead.
+            b64_success, b64_output = await run_command("adb exec-out screencap -p | base64")
+            if b64_success:
+                screenshot_base64 = b64_output.replace("\n", "").replace("\r", "")
         
         # Build result
         result = {
@@ -455,7 +456,10 @@ async def analyze_screen(include_screenshot: bool = False, max_elements: int = 5
             },
             "suggested_actions": suggested_actions,
         }
-        
+
+        if include_screenshot:
+            screen_analysis["screenshot"] = screen_info.get("screenshot", "")
+
         return json.dumps(screen_analysis, ensure_ascii=False)
         
     except Exception as e:
