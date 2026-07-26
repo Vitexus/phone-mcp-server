@@ -67,4 +67,6 @@ debian/debhelper-build-stamp
 debian/files
 debian/*.debhelper
 debian/*.substvars
-debian/python3-phone-mcp/ 
+debian/python3-phone-mcp/
+debian/phone-mcp/
+debian/phone-mcp-server/ 

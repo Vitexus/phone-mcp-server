@@ -1,6 +1,6 @@
 import argparse
 import asyncio
-from mcp.server.fastmcp import FastMCP
+from fastmcp import FastMCP
 
 # Initialize FastMCP server
 mcp = FastMCP("phone_call")

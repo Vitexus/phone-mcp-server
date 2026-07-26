@@ -1,4 +1,4 @@
-python-phone-mcp (0.3.6-1) UNRELEASED; urgency=low
+phone-mcp-server (0.3.6-1) UNRELEASED; urgency=low
 
   * Initial Debian packaging
 

@@ -7,7 +7,7 @@ setup(
     setup_requires=["setuptools-scm"],
     packages=find_packages(),
     install_requires=[
-        "mcp>=1.6.0",
+        "fastmcp>=2.0.0",
         "aiohttp>=3.8.0",
         "asyncio>=3.4.3",
         "pypinyin>=0.54.0",

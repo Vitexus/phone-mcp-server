@@ -1,4 +1,4 @@
-Source: python-phone-mcp
+Source: phone-mcp-server
 Section: python
 Priority: optional
 Maintainer: Vítězslav Dvořák <info@vitexsoftware.cz>
@@ -10,11 +10,11 @@ Build-Depends:
  python3-setuptools-scm,
 Standards-Version: 4.7.0
 Homepage: https://github.com/hao-cyber/phone-mcp
-Vcs-Git: https://github.com/Vitexus/python-phone-mcp.git
-Vcs-Browser: https://github.com/Vitexus/python-phone-mcp
+Vcs-Git: https://github.com/Vitexus/phone-mcp-server.git
+Vcs-Browser: https://github.com/Vitexus/phone-mcp-server
 Rules-Requires-Root: no
 
-Package: python3-phone-mcp
+Package: phone-mcp-server
 Architecture: all
 Multi-Arch: foreign
 Depends:
@@ -22,8 +22,11 @@ Depends:
  ${python3:Depends},
  adb,
  python3-aiohttp,
- python3-mcp,
+ python3-fastmcp,
  python3-pypinyin,
+Provides: python3-phone-mcp
+Replaces: python3-phone-mcp (<< 0.3.6-2~)
+Breaks: python3-phone-mcp (<< 0.3.6-2~)
 Description: MCP plugin for controlling Android phones via ADB
  Phone MCP is a Model Context Protocol plugin that lets an AI assistant
  control an Android phone through the Android Debug Bridge (ADB).
