@@ -1,5 +1,11 @@
-phone-mcp-server (0.3.6-1) UNRELEASED; urgency=low
+phone-mcp-server (0.3.6-2) unstable; urgency=low
 
+  [ Vítězslav Dvořák ]
   * Initial Debian packaging
 
- -- Vítězslav Dvořák <info@vitexsoftware.cz>  Sun, 12 Jul 2026 22:35:02 +0200
+  [ vitex ]
+  * Add companion package mcprack-mcp-server-phone: registers phone-mcp-
+    server into the local mcprack MCP catalog on install (postinst) and
+    unregisters it on removal (prerm).
+
+ -- vitex <info@vitexsoftware.cz>  Thu, 27 Aug 2026 10:24:03 +0200
