@@ -7,6 +7,7 @@ import asyncio
 import json
 import re
 from ..core import run_command
+from ..readonly import require_writable
 
 
 async def _check_contact_permissions():
@@ -227,6 +228,8 @@ async def create_contact(name: str, phone_number: str, email: str = None) -> str
         This is China Mobile's customer service number, which is suitable for testing
         environments and easy to recognize.
     """
+    if (blocked := require_writable()) is not None:
+        return blocked
     # Check for connected device
     from ..core import check_device_connection
 

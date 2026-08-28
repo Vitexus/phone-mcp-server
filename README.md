@@ -492,6 +492,11 @@ Example success output:
 - Make sure your Android device is connected and authorized for ADB use
 - The device screen should be unlocked when running the command
 - Some devices might require additional permissions to modify contacts
+- **Read-only by default**: calls, SMS, contact creation, app launch/termination,
+  alarms, and screen input (tap/swipe/key/text) are disabled unless
+  `PHONE_READONLY=false` is set. Read-only tools (listing contacts/messages/apps,
+  screenshots, screen analysis, `find`/`wait`/`scroll` screen queries) are
+  unaffected.
 
 ### Apps & Shortcuts
 ```bash

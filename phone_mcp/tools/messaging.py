@@ -5,6 +5,7 @@ import subprocess
 import json
 from ..core import run_command
 from ..config import DEFAULT_COUNTRY_CODE
+from ..readonly import require_writable
 
 
 async def send_text_message(phone_number: str, message: str) -> str:
@@ -25,6 +26,8 @@ async def send_text_message(phone_number: str, message: str) -> str:
              - Failure: Message containing error reason, like "Failed to open messaging app: {error}"
                        or "Failed to navigate to send button: {error}"
     """
+    if (blocked := require_writable()) is not None:
+        return blocked
     # Add country code if not already included
     if not phone_number.startswith("+"):
         phone_number = DEFAULT_COUNTRY_CODE + phone_number

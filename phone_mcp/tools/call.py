@@ -3,6 +3,7 @@
 import re
 from ..core import run_command, check_device_connection
 from ..config import DEFAULT_COUNTRY_CODE
+from ..readonly import require_writable
 
 
 async def call_number(phone_number: str) -> str:
@@ -19,6 +20,8 @@ async def call_number(phone_number: str) -> str:
         str: Success message with the number being called, or an error message
              if the call could not be initiated.
     """
+    if (blocked := require_writable()) is not None:
+        return blocked
     # Add country code if not already included
     if not phone_number.startswith("+"):
         phone_number = DEFAULT_COUNTRY_CODE + phone_number
@@ -46,6 +49,8 @@ async def end_call() -> str:
         str: Success message if the call was ended, or an error message
              if the end call command failed.
     """
+    if (blocked := require_writable()) is not None:
+        return blocked
     success, output = await run_command("adb shell input keyevent KEYCODE_ENDCALL")
 
     if success:

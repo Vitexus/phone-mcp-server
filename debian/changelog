@@ -1,3 +1,13 @@
+phone-mcp-server (0.3.7-1) unstable; urgency=medium
+
+  * Security fix: add PHONE_READONLY (default true, fail-closed)
+    guarding call_number, end_call, send_text_message, create_contact,
+    terminate_app, set_alarm, launch_app_activity, and the
+    tap/swipe/key/text actions of interact_with_screen -- previously
+    none of these had any read-only gate.
+
+ -- vitex <info@vitexsoftware.cz>  Fri, 28 Aug 2026 10:48:22 +0200
+
 phone-mcp-server (0.3.6-2) unstable; urgency=low
 
   [ Vítězslav Dvořák ]

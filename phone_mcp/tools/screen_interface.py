@@ -18,6 +18,7 @@ from .ui_enhanced import (
 from .interactions import tap_screen, swipe_screen, press_key, input_text, get_screen_size
 from .media import take_screenshot
 from ..core import run_command
+from ..readonly import require_writable
 
 logger = logging.getLogger("phone_mcp")
 
@@ -576,6 +577,10 @@ async def interact_with_screen(action: str, params: Dict[str, Any]) -> str:
                                             "max_swipes": 8})
     """
     try:
+        if action in ("tap", "swipe", "key", "text"):
+            if (blocked := require_writable()) is not None:
+                return json.dumps({"status": "error", "message": blocked}, ensure_ascii=False)
+
         if action == "tap":
             if "x" in params and "y" in params:
                 return await tap_screen(params["x"], params["y"])

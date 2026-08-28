@@ -4,6 +4,7 @@ import json
 import re
 import logging
 from ..core import run_command, check_device_connection
+from ..readonly import require_writable
 from typing import Optional, Dict
 
 logger = logging.getLogger("phone_mcp")
@@ -218,6 +219,8 @@ async def terminate_app(package_name: str):
     Returns:
         str: Success or error message
     """
+    if (blocked := require_writable()) is not None:
+        return blocked
     # Check for connected device
     connection_status = await check_device_connection()
     if "ready" not in connection_status:
@@ -267,6 +270,8 @@ async def set_alarm(hour: int, minute: int, label: str = "Alarm") -> str:
         str: Success message if the alarm was set, or an error message
              if the alarm could not be created.
     """
+    if (blocked := require_writable()) is not None:
+        return blocked
     # Check for connected device
     connection_status = await check_device_connection()
     if "ready" not in connection_status:
@@ -333,6 +338,8 @@ async def launch_app_activity(package_name: str, activity_name: str = None) -> s
         # Launch Android settings
         result = await launch_app_activity("com.android.settings")
     """
+    if (blocked := require_writable()) is not None:
+        return json.dumps({"status": "error", "message": blocked})
     try:
         if activity_name:
             # Launch specific activity
